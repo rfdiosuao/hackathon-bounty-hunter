@@ -1,15 +1,25 @@
 <html style="margin:0;padding:0;">
-<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0d1117;color:#e6edf3;padding:32px 20px;max-width:860px;margin:0 auto;">
-
+<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0d1117;color:#e6edf3;padding:32px 20px;max-width:900px;margin:0 auto;">
   <!-- 标题 -->
   <div style="text-align:center;margin-bottom:8px;">
-    <div style="font-size:12px;letter-spacing:3px;color:#58a6ff;text-transform:uppercase;margin-bottom:6px;">Hackathon Bounty Hunter</div>
+    <div style="font-size:12px;letter-spacing:3px;color:#58a6ff;text-transform:uppercase;margin-bottom:6px;">Hackathon Bounty Hunter v2.0</div>
     <h1 style="font-size:26px;font-weight:700;margin:0;color:#f0f6fc;">黑客松赏金猎人 · 七阶段工作流</h1>
-    <p style="font-size:14px;color:#8b949e;margin:8px 0 0;">从「发现比赛」到「拿奖复盘」的端到端闭环 · 每个人按此流程执行即可系统性提升获奖概率</p>
+    <p style="font-size:14px;color:#8b949e;margin:8px 0 0;">从「发现比赛」到「拿奖复盘提PR」的端到端闭环 · 含自动参赛轻量通道 · 每个人按此流程执行即可系统性提升获奖概率</p>
+  </div>
+
+  <!-- 获奖公式 -->
+  <div style="margin:20px auto;max-width:640px;background:#161b22;border:1px solid #30363d;border-radius:10px;padding:14px 18px;text-align:center;">
+    <div style="font-size:13px;color:#8b949e;margin-bottom:6px;">🏆 黑客松获奖公式</div>
+    <div style="font-size:18px;font-weight:700;color:#f0f6fc;">
+      <span style="color:#58a6ff;">Idea 60%</span> + 
+      <span style="color:#f0883e;">UI 20%</span> + 
+      <span style="color:#d2a8ff;">路演 20%</span>
+    </div>
+    <div style="font-size:12px;color:#484f58;margin-top:4px;">最小可演示闭环 · 做少做精做炸 · 不追求项目完成度</div>
   </div>
 
   <!-- 图例 -->
-  <div style="display:flex;gap:20px;justify-content:center;margin:20px 0 28px;flex-wrap:wrap;">
+  <div style="display:flex;gap:16px;justify-content:center;margin:20px 0 28px;flex-wrap:wrap;">
     <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#8b949e;"><span style="width:10px;height:10px;border-radius:2px;background:#58a6ff;display:inline-block;"></span>全自动（定时任务）</span>
     <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#8b949e;"><span style="width:10px;height:10px;border-radius:2px;background:#f0883e;display:inline-block;"></span>人机协作</span>
     <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#8b949e;"><span style="width:10px;height:10px;border-radius:2px;background:#3fb950;display:inline-block;"></span>阶段产出</span>
@@ -19,11 +29,11 @@
   <!-- 时间线容器 -->
   <div style="position:relative;padding-left:48px;">
     <!-- 竖线 -->
-    <div style="position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#58a6ff 0%,#f0883e 15%,#f0883e 85%,#d2a8ff 100%);"></div>
+    <div style="position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#58a6ff 0%,#f0883e 20%,#f0883e 80%,#d2a8ff 100%);"></div>
 
-    <!-- 阶段 0 -->
+    <!-- 阶段 1 -->
     <div style="position:relative;margin-bottom:24px;">
-      <div style="position:absolute;left:-48px;top:16px;width:36px;height:36px;border-radius:50%;background:#58a6ff;color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;z-index:1;">0</div>
+      <div style="position:absolute;left:-48px;top:16px;width:36px;height:36px;border-radius:50%;background:#58a6ff;color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;z-index:1;">1</div>
       <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;border-left:3px solid #58a6ff;">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
           <span style="font-size:16px;font-weight:600;color:#58a6ff;">情报雷达</span>
@@ -31,29 +41,10 @@
         </div>
         <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>定时任务 cron 自动触发</div>
         <div style="font-size:13px;color:#c9d1d9;line-height:1.7;">
-          <b>动作：</b>多源抓取（HackHQ + 观猹 watcha + 小红书博主 + Lablab.ai + 大厂赛事 + 公众号）→ 按位置/预算/截止筛选 → 去重 → 多通道推送<br>
-          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">01-radar/</code> 全部脚本
+          <b>动作：</b>多源抓取（HackHQ + 观猹 watcha + 小红书3博主 + Lablab.ai + 大厂赛事 + 公众号搜索）→ 按位置/预算/截止筛选 → 去重 → 多通道推送（飞书为主 + 邮箱/短信为辅）<br>
+          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">01-radar/</code> fetch_hackathons.py + send_feishu.py
         </div>
-        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：比赛清单卡片（名称 / 截止 / 奖金 / 报名链接 / 地点）→ 飞书+邮箱+短信</div>
-      </div>
-    </div>
-
-    <div style="text-align:center;color:#484f58;font-size:18px;margin:-8px 0 16px 0;">↓</div>
-
-    <!-- 阶段 1 -->
-    <div style="position:relative;margin-bottom:24px;">
-      <div style="position:absolute;left:-48px;top:16px;width:36px;height:36px;border-radius:50%;background:#f0883e;color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;z-index:1;">1</div>
-      <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;border-left:3px solid #f0883e;">
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span style="font-size:16px;font-weight:600;color:#f0883e;">报名决策</span>
-          <span style="font-size:11px;background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;">人机协作</span>
-        </div>
-        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>收到推送后，手动选择感兴趣的比赛</div>
-        <div style="font-size:13px;color:#c9d1d9;line-height:1.7;">
-          <b>动作：</b>用 competition-award-pathfinder 分析规则 → 提取硬门槛（资格/提交数/平台）→ 重建评审漏斗（机筛→专家→决赛→人气）→ 对比 ≥3 条赛道<br>
-          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">competition-award-pathfinder</code> Step 1-7
-        </div>
-        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：参赛决策报告（推荐赛道 + 弃赛理由 + 倒推时间线）</div>
+        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：比赛清单卡片（名称 / 截止 / 奖金 / 报名链接 / 地点）→ 飞书推送</div>
       </div>
     </div>
 
@@ -64,34 +55,47 @@
       <div style="position:absolute;left:-48px;top:16px;width:36px;height:36px;border-radius:50%;background:#f0883e;color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;z-index:1;">2</div>
       <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;border-left:3px solid #f0883e;">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span style="font-size:16px;font-weight:600;color:#f0883e;">创意生成</span>
-          <span style="font-size:11px;background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;">人机协作 · 核心 60%</span>
+          <span style="font-size:16px;font-weight:600;color:#f0883e;">筛选罗盘</span>
+          <span style="font-size:11px;background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;">人机协作 · 双通道分流</span>
         </div>
-        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>确定参赛赛道后</div>
+        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>收到推送后，选择感兴趣的比赛</div>
         <div style="font-size:13px;color:#c9d1d9;line-height:1.7;">
-          <b>动作：</b>用「反惯性·多视角·闭环验证」提示词 → 悬置第一反应解法 → ≥3 独立视角审视（时间/立场/层次）→ 把握度分级+闭环学习 → 倒推评分维度生成 idea<br>
-          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">Step 7.5 创意生成</code>
+          <b>动作：</b>用 competition-award-pathfinder 分析规则 → 提取硬门槛 → 重建评审漏斗 → 对比 ≥3 条赛道 → <b>判断比赛类型</b><br>
+          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">02-compass/</code> + competition-award-pathfinder
         </div>
-        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：3-5 个差异化 idea + 推荐路线 + 核心 demo 定义</div>
+        <!-- 双通道分流 -->
+        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px 12px;">
+            <div style="font-size:12px;font-weight:600;color:#58a6ff;margin-bottom:4px;">⚡ 轻量通道（线上提交制）</div>
+            <div style="font-size:11px;color:#8b949e;line-height:1.6;">自动参赛 Agent：扫描GitHub → AI匹配项目 → 自动包装 → 半自动提交 → <b>结果自动跟踪（每5天）</b> → 获奖触发复盘</div>
+            <div style="font-size:11px;color:#484f58;margin-top:4px;"><code style="background:#21262d;padding:1px 4px;border-radius:3px;">AUTO_ENTRY.md</code></div>
+          </div>
+          <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px 12px;">
+            <div style="font-size:12px;font-weight:600;color:#f0883e;margin-bottom:4px;">🔥 重量通道（高奖金/线下）</div>
+            <div style="font-size:11px;color:#8b949e;line-height:1.6;">进入阶段3深度分析 → 创意生成 → UI设计 → 开发 → 路演 → 现场参赛 → 复盘</div>
+            <div style="font-size:11px;color:#484f58;margin-top:4px;">继续阶段 3→7</div>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：参赛决策报告（推荐赛道 + 通道选择 + 倒推时间线）</div>
       </div>
     </div>
 
-    <div style="text-align:center;color:#484f58;font-size:18px;margin:-8px 0 16px 0;">↓</div>
+    <div style="text-align:center;color:#484f58;font-size:18px;margin:-8px 0 16px 0;">↓ 重量通道继续</div>
 
     <!-- 阶段 3 -->
     <div style="position:relative;margin-bottom:24px;">
       <div style="position:absolute;left:-48px;top:16px;width:36px;height:36px;border-radius:50%;background:#f0883e;color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;z-index:1;">3</div>
       <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;border-left:3px solid #f0883e;">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span style="font-size:16px;font-weight:600;color:#f0883e;">UI/UX 设计</span>
-          <span style="font-size:11px;background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;">人机协作 · UI 一定要炸</span>
+          <span style="font-size:16px;font-weight:600;color:#f0883e;">深度分析 + 创意生成</span>
+          <span style="font-size:11px;background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;">人机协作 · 核心 60%</span>
         </div>
-        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>idea 确定后</div>
+        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>确定走重量通道后</div>
         <div style="font-size:13px;color:#c9d1d9;line-height:1.7;">
-          <b>动作：</b>选风格（民国复古/暗黑国风/水彩治愈/星空数据…）→ 设计交互逻辑 → 鼠标交互动作 → 首屏流体动效 → 倒推制作顺序（先图片资产 or 先框架）<br>
-          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">05-stage/</code> 5 个蒸馏文档 + archive-miaoda 获奖作品
+          <b>动作：</b>深度拆解比赛规则 → 用「反惯性·多视角·闭环验证」提示词生成 idea → 悬置第一反应 → ≥3 独立视角审视 → 把握度分级 → 倒推评分维度生成 3-5 个差异化 idea<br>
+          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">03-pathfinder/</code> + Step 7.5 创意生成
         </div>
-        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：UI 设计规范 + 交互原型 + 图片资产清单</div>
+        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：3-5 个差异化 idea + 推荐路线 + 核心 demo 定义</div>
       </div>
     </div>
 
@@ -102,15 +106,15 @@
       <div style="position:absolute;left:-48px;top:16px;width:36px;height:36px;border-radius:50%;background:#f0883e;color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;z-index:1;">4</div>
       <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;border-left:3px solid #f0883e;">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span style="font-size:16px;font-weight:600;color:#f0883e;">开发实现</span>
-          <span style="font-size:11px;background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;">人机协作</span>
+          <span style="font-size:16px;font-weight:600;color:#f0883e;">作品武器库</span>
+          <span style="font-size:11px;background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;">人机协作 · UI 一定要炸</span>
         </div>
-        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>设计规范确定后</div>
+        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>idea 确定后</div>
         <div style="font-size:13px;color:#c9d1d9;line-height:1.7;">
-          <b>动作：</b>按制作流程倒推顺序执行 → 图片资产先行（AI 生成/设计）→ 搭框架填充 → 先做核心 demo（3 分钟可演示的最小闭环）<br>
-          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">PRODUCTION_FLOW.md</code> 制作流程方法论
+          <b>动作：</b>从获奖作品档案选风格 → UI设计规范 → 交互逻辑 → 鼠标交互动作 → 首屏流体动效 → 倒推制作顺序（先图片资产 or 先框架）→ 按最小MVP标准砍功能<br>
+          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">04-arsenal/</code> + <code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">05-stage/</code> 5个蒸馏文档 + archive-miaoda 13个获奖作品
         </div>
-        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：可运行 demo + 提交材料（代码/文档/视频）</div>
+        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：UI设计规范 + 交互原型 + 图片资产清单 + 最小MVP功能清单</div>
       </div>
     </div>
 
@@ -121,53 +125,79 @@
       <div style="position:absolute;left:-48px;top:16px;width:36px;height:36px;border-radius:50%;background:#f0883e;color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;z-index:1;">5</div>
       <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;border-left:3px solid #f0883e;">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span style="font-size:16px;font-weight:600;color:#f0883e;">路演准备</span>
-          <span style="font-size:11px;background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;">人机协作 · 会讲故事</span>
+          <span style="font-size:16px;font-weight:600;color:#f0883e;">执行冲刺</span>
+          <span style="font-size:11px;background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;">人机协作 · 最小可演示闭环</span>
         </div>
-        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>demo 完成后</div>
+        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>设计规范确定后</div>
         <div style="font-size:13px;color:#c9d1d9;line-height:1.7;">
-          <b>动作：</b>讲故事框架（痛点→方案→演示→愿景→团队）→ 路演 PPT/文档 → 3min/5min/10min 多版本 → 答辩 Q&A 预案<br>
-          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">competition-award-pathfinder</code> Step 8-9
+          <b>动作：</b>按制作流程执行 → 图片资产先行 → 搭框架填充 → <b>只做最小可演示闭环（P0功能40%时间 + P1 UI 25%时间）</b> → 设计哇时刻 → 不追求项目完成度<br>
+          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">06-sprint/</code> minimum-demo-loop.md + PRODUCTION_FLOW.md
         </div>
-        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：路演稿 + PPT + 答辩预案</div>
+        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：可运行 demo（3分钟可演示的最小闭环）+ 演示视频（45-90秒）</div>
       </div>
     </div>
 
     <div style="text-align:center;color:#484f58;font-size:18px;margin:-8px 0 16px 0;">↓</div>
 
     <!-- 阶段 6 -->
-    <div style="position:relative;margin-bottom:8px;">
+    <div style="position:relative;margin-bottom:24px;">
       <div style="position:absolute;left:-48px;top:16px;width:36px;height:36px;border-radius:50%;background:#d2a8ff;color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;z-index:1;">6</div>
       <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;border-left:3px solid #d2a8ff;">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span style="font-size:16px;font-weight:600;color:#d2a8ff;">参赛 & 复盘</span>
-          <span style="font-size:11px;background:#d2a8ff22;color:#d2a8ff;padding:2px 8px;border-radius:10px;">闭环 · 沉淀经验</span>
+          <span style="font-size:16px;font-weight:600;color:#d2a8ff;">路演舞台</span>
+          <span style="font-size:11px;background:#d2a8ff22;color:#d2a8ff;padding:2px 8px;border-radius:10px;">人机协作 · 会讲故事 · 丝滑动画</span>
         </div>
-        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>比赛当天</div>
+        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>demo 完成后</div>
         <div style="font-size:13px;color:#c9d1d9;line-height:1.7;">
-          <b>动作：</b>提交作品 + 现场路演 → 赛后复盘（哪些有效/哪些失效）→ 沉淀到获奖作品档案 → 优化情报源和创意方法论<br>
-          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">archive-miaoda/</code> 获奖作品档案模式
+          <b>动作：</b>写逐字稿 → Gamma生成PPT初稿 → PowerPoint精修动画（统一Fade + 缓入缓出 + Morph转场 + 嵌入演示视频）→ 10页5分钟模板 → 排练配合语速 → 答辩Q&A预案<br>
+          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">06-sprint/PITCH_DECK.md</code> 丝滑动画PPT指南
         </div>
-        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：复盘文档 + 可复用经验 + 下一轮迭代输入</div>
+        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：路演稿 + 丝滑动画PPT（含嵌入视频）+ 答辩预案</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;color:#484f58;font-size:18px;margin:-8px 0 16px 0;">↓</div>
+
+    <!-- 阶段 7 -->
+    <div style="position:relative;margin-bottom:8px;">
+      <div style="position:absolute;left:-48px;top:16px;width:36px;height:36px;border-radius:50%;background:#d2a8ff;color:#0d1117;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;z-index:1;">7</div>
+      <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;border-left:3px solid #d2a8ff;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <span style="font-size:16px;font-weight:600;color:#d2a8ff;">复盘结晶</span>
+          <span style="font-size:11px;background:#d2a8ff22;color:#d2a8ff;padding:2px 8px;border-radius:10px;">全自动闭环 · 自动提PR</span>
+        </div>
+        <div style="font-size:13px;color:#8b949e;margin:6px 0;"><b style="color:#c9d1d9;">触发：</b>比赛结束（获奖 or 未获奖）</div>
+        <div style="font-size:13px;color:#c9d1d9;line-height:1.7;">
+          <b>动作：</b>交互式复盘问卷（七维度自评 + 失败原因 + 评委反馈 + 改进Top3）→ 规则引擎分析短板（idea/UI/故事哪个不行）→ 生成复盘文档（含雷达图）→ <b>自动创建分支+提交+创建PR到总仓库</b><br>
+          <b style="color:#8b949e;">关联模块：</b><code style="background:#21262d;padding:1px 5px;border-radius:3px;font-size:12px;">07-crystal/</code> review_hackathon.py（502行）
+        </div>
+        <div style="margin-top:8px;font-size:13px;color:#3fb950;">📦 产出：复盘文档 + 针对性优化建议 + 自动PR（越多人用，项目越强）</div>
+      </div>
+    </div>
+
+    <!-- 轻量通道结果跟踪说明 -->
+    <div style="margin-top:20px;padding:14px 18px;background:#161b22;border:1px solid #1f6feb44;border-radius:10px;">
+      <div style="font-size:13px;color:#58a6ff;font-weight:600;margin-bottom:6px;">⚡ 轻量通道补充：结果自动跟踪</div>
+      <div style="font-size:13px;color:#8b949e;line-height:1.8;">
+        自动参赛提交后 → 云电脑保存登录态 → <b style="color:#c9d1d9;">每5天自动访问记录页</b> → 状态机跟踪（已提交→初审→入围→复赛→决赛→获奖/未获奖）→ 状态变化立即推送 → 获奖触发领奖指南+复盘 → 未获奖触发复盘+推荐下一场
       </div>
     </div>
 
     <!-- 反馈循环 -->
-    <div style="margin-top:24px;padding:14px 18px;background:#161b22;border:1px dashed #d2a8ff;border-radius:10px;">
-      <div style="font-size:13px;color:#d2a8ff;font-weight:600;margin-bottom:6px;">🔄 反馈循环（让系统越跑越强）</div>
+    <div style="margin-top:16px;padding:14px 18px;background:#161b22;border:1px dashed #d2a8ff;border-radius:10px;">
+      <div style="font-size:13px;color:#d2a8ff;font-weight:600;margin-bottom:6px;">🔄 反馈循环（让系统越跑越强 · 越多人用越强）</div>
       <div style="font-size:13px;color:#8b949e;line-height:1.8;">
-        阶段 6 复盘 → <b style="color:#c9d1d9;">优化阶段 0 情报源</b>（新增/淘汰信息源、调整筛选阈值）<br>
-        阶段 6 复盘 → <b style="color:#c9d1d9;">迭代阶段 2 创意方法论</b>（验证哪些 idea 模式真的能拿奖，沉淀为可复用模板）<br>
-        阶段 6 获奖作品 → <b style="color:#c9d1d9;">补充阶段 3 UI 档案</b>（新增获奖作品拆解，扩充风格库）
+        阶段7复盘PR → <b style="color:#c9d1d9;">优化阶段1情报源</b>（新增/淘汰信息源、调整筛选阈值）<br>
+        阶段7复盘PR → <b style="color:#c9d1d9;">迭代阶段3创意方法论</b>（验证哪些idea模式真的能拿奖）<br>
+        阶段7获奖作品 → <b style="color:#c9d1d9;">补充阶段4 UI档案</b>（新增获奖作品拆解，扩充风格库）<br>
+        阶段7复盘PR → <b style="color:#c9d1d9;">优化阶段6路演模板</b>（沉淀有效的叙事结构和动画模式）
       </div>
     </div>
-
   </div>
 
   <!-- 底部说明 -->
   <div style="margin-top:28px;padding-top:16px;border-top:1px solid #21262d;text-align:center;">
-    <p style="font-size:12px;color:#484f58;margin:0;">黑客松赏金猎人 · 七阶段工作流 · 项目地址：github.com/rfdiosuao/hackathon-bounty-hunter</p>
+    <p style="font-size:12px;color:#484f58;margin:0;">黑客松赏金猎人 · 七阶段工作流 v2.0 · 项目地址：github.com/rfdiosuao/hackathon-bounty-hunter</p>
   </div>
-
 </div>
 </html>
