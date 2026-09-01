@@ -1,25 +1,25 @@
 # 🏆 秒哒应用美学黑客松 获奖作品档案
 > 来源：外滩黑客松·AI Coding 大赛 × 秒哒应用美学黑客松 官网
 > 采集日期：2026-09-01
-> 作品截图：`./images/` 目录（13 张 PNG）
+> 作品截图托管于 CDN（13 张 PNG），点击「截图」可查看
 > 所有作品均可点击 demo 链接体验实际 UI
 ---
 ## 作品总览（13 个）
 | # | 作品名 | 一句话理解 | Demo 链接 | 截图 |
 |---|---|---|---|---|
-| 1 | 外滩·折叠的回声 | AI 沉浸式时空叙事，与三个时代角色对话 | [体验](https://app-d7slzrbamyv5.appmiaoda.com) | [截图](./images/外滩_折叠的回声.png) |
-| 2 | 外滩未入镜 | 21:9 取景框看外滩背后的劳动故事 | [体验](https://app-di97g0wrur5t.appmiaoda.com/) | [截图](./images/外滩未入镜.png) |
-| 3 | 混世魔牛 | 暗黑国风横版动作 ARPG 游戏 | [体验](https://app-dllkakwk14ap.appmiaoda.com) | [截图](./images/混世魔牛.png) |
-| 4 | 绮罗间 | 中国传统色纹数字展馆 | [体验](https://app-d941ajemoxz5.appmiaoda.com) | [截图](./images/绮罗间.png) |
-| 5 | 人生包装研究所 | 把情绪包装成人生产品 | [体验](https://app-czk90sjwcxdt.appmiaoda.com/) | [截图](./images/人生包装研究所.png) |
-| 6 | 失物招领 | 70-00 年代老物件时代档案馆 | [体验](https://app-dg76zd2d10xt.appmiaoda.com/) | [截图](./images/失物招领.png) |
-| 7 | 书境 | 24 本书 = 24 个交互空间的图书馆 | [体验](https://app-dbf5aby4woht.appmiaoda.com/home.html) | [截图](./images/书境_一座收藏氛围的图书馆.png) |
-| 8 | 申光纪 | 上海四千年历史织成星空 | [体验](https://app-di2df329yrcx.appmiaoda.com) | [截图](./images/申光纪___上海历史星云.png) |
-| 9 | 思豫·中原 | 黄河麦田中原文脉油画滚动页 | [体验](https://app-d59nu3vnzmkh.appmiaoda.com/) | [截图](./images/思豫_中原.png) |
-| 10 | 遗憾星云 | 把遗憾封存成星球的情感疗愈 | [体验](https://app-cs0g041dvif5.appmiaoda.com/) | [截图](./images/遗憾星云.png) |
-| 11 | 疗愈网站 | 水彩风的感官疗愈圣殿 | [体验](https://app-davp40838269.appmiaoda.com/) | [截图](./images/Le_Havre_de_Paix_疗愈网站.png) |
-| 12 | 3D 个人简历 | 可走进的 3D 交互式个人主页 | [体验](https://app-dheqaw812z9d.appmiaoda.com/) | [截图](./images/可交互的3D个人简历.png) |
-| 13 | 传统纹样解构实验室 | 传统纹样 3D 解构 + AI 生成平台 | [体验](https://app-djzcc0z5nlz5.appmiaoda.com/) | [截图](./images/传统纹样解构实验室.png) |
+| 1 | 外滩·折叠的回声 | AI 沉浸式时空叙事，与三个时代角色对话 | [体验](https://app-d7slzrbamyv5.appmiaoda.com) | [截图](https://aka.doubaocdn.com/s/4BmqEaYTbC) |
+| 2 | 外滩未入镜 | 21:9 取景框看外滩背后的劳动故事 | [体验](https://app-di97g0wrur5t.appmiaoda.com/) | [截图](https://aka.doubaocdn.com/s/p90P9jmbO5) |
+| 3 | 混世魔牛 | 暗黑国风横版动作 ARPG 游戏 | [体验](https://app-dllkakwk14ap.appmiaoda.com) | [截图](https://aka.doubaocdn.com/s/kvLwxt3En0) |
+| 4 | 绮罗间 | 中国传统色纹数字展馆 | [体验](https://app-d941ajemoxz5.appmiaoda.com) | [截图](https://aka.doubaocdn.com/s/vcytE0dszU) |
+| 5 | 人生包装研究所 | 把情绪包装成人生产品 | [体验](https://app-czk90sjwcxdt.appmiaoda.com/) | [截图](https://aka.doubaocdn.com/s/GSd1ToEaaA) |
+| 6 | 失物招领 | 70-00 年代老物件时代档案馆 | [体验](https://app-dg76zd2d10xt.appmiaoda.com/) | [截图](https://aka.doubaocdn.com/s/V9waH8eZ8W) |
+| 7 | 书境 | 24 本书 = 24 个交互空间的图书馆 | [体验](https://app-dbf5aby4woht.appmiaoda.com/home.html) | [截图](https://aka.doubaocdn.com/s/YzQWPPVUBM) |
+| 8 | 申光纪 | 上海四千年历史织成星空 | [体验](https://app-di2df329yrcx.appmiaoda.com) | [截图](https://aka.doubaocdn.com/s/udCoC6dhGE) |
+| 9 | 思豫·中原 | 黄河麦田中原文脉油画滚动页 | [体验](https://app-d59nu3vnzmkh.appmiaoda.com/) | [截图](https://aka.doubaocdn.com/s/zTM8cGF5RZ) |
+| 10 | 遗憾星云 | 把遗憾封存成星球的情感疗愈 | [体验](https://app-cs0g041dvif5.appmiaoda.com/) | [截图](https://aka.doubaocdn.com/s/Z8at2Os89T) |
+| 11 | 疗愈网站 | 水彩风的感官疗愈圣殿 | [体验](https://app-davp40838269.appmiaoda.com/) | [截图](https://aka.doubaocdn.com/s/Gux2rrxuJd) |
+| 12 | 3D 个人简历 | 可走进的 3D 交互式个人主页 | [体验](https://app-dheqaw812z9d.appmiaoda.com/) | [截图](https://aka.doubaocdn.com/s/fMdUIhOGGm) |
+| 13 | 传统纹样解构实验室 | 传统纹样 3D 解构 + AI 生成平台 | [体验](https://app-djzcc0z5nlz5.appmiaoda.com/) | [截图](https://aka.doubaocdn.com/s/At785KeP7d) |
 ---
 ## 作品深度拆解
 ### 1. 外滩·折叠的回声（AI 沉浸式叙事）
