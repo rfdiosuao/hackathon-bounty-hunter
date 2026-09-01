@@ -1,0 +1,9 @@
+{
+  "github_token": "your_github_personal_access_token_here",
+  "github_owner": "rfdiosuao",
+  "github_repo": "hackathon-bounty-hunter",
+  "github_branch": "main",
+  "llm_api_key": "",
+  "llm_base_url": "https://api.openai.com/v1",
+  "llm_model": "gpt-4o-mini"
+}
