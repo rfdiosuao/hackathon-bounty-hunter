@@ -1,0 +1,38 @@
+# 环境
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+
+# 配置文件（含密钥，不提交）
+config.json
+01-radar/config.json
+
+# 数据文件（运行时生成）
+*.json
+!config/config.example.json
+!01-radar/pushed.json.example
+
+# 日志
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 临时文件
+tmp/
+temp/
+email_content.*
+latest_*.json
+pushed.json

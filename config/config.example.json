@@ -1,0 +1,78 @@
+{
+  "user": {
+    "name": "你的名字",
+    "location": "上海",
+    "skills": ["Python", "AI/ML", "前端"],
+    "max_travel_cost": 500,
+    "preferred_formats": ["线上", "线下"],
+    "target_award_min": 1000
+  },
+  "sources": {
+    "hackhq": true,
+    "devpost": false,
+    "web_search": true,
+    "xiaohongshu": true,
+    "douyin": false,
+    "bilibili": false,
+    "discord": false,
+    "luma": false,
+    "watcha": true,
+    "custom_urls": [],
+    "xiaohongshu_notes": [
+      {
+        "name": "杭州AI工坊",
+        "url": "https://xhslink.cn/o/6AWI7fUjemt",
+        "user_id": "5cc5d87400000000120278a2"
+      },
+      {
+        "name": "黑客松周报",
+        "url": "https://xhslink.cn/o/8ItMKYhiWzF"
+      },
+      {
+        "name": "数字小蕾的AI实验室",
+        "url": "https://xhslink.cn/o/8EOu1LNI9Cv",
+        "user_id": "69785f98000000001d0058cd"
+      }
+    ]
+  },
+  "notify": {
+    "feishu": {
+      "enabled": true,
+      "open_id": "ou_xxxxxxxxxxxxxxxx"
+    },
+    "email": {
+      "enabled": false,
+      "smtp": {
+        "server": "smtp.qq.com",
+        "port": 465,
+        "username": "your@email.com",
+        "password": "your_smtp_auth_code",
+        "from_email": "your@email.com"
+      },
+      "to": "your@email.com"
+    },
+    "sms": {
+      "enabled": false,
+      "provider": "aliyun",
+      "phone": "138xxxx1234",
+      "sign_name": "你的签名",
+      "template_code": "SMS_xxxxxx",
+      "access_key_id": "your_access_key_id",
+      "access_key_secret": "your_access_key_secret"
+    },
+    "wechat": {
+      "enabled": false,
+      "webhook_url": ""
+    }
+  },
+  "schedule": {
+    "scan_times": ["09:00", "20:00"],
+    "timezone": "Asia/Shanghai"
+  },
+  "filter": {
+    "max_distance_km": 300,
+    "min_prize": 0,
+    "exclude_keywords": [],
+    "preferred_keywords": ["AI", "Agent", "大模型"]
+  }
+}
