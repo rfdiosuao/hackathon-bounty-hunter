@@ -1,0 +1,120 @@
+{
+  "source": "外滩黑客松×秒哒应用美学黑客松大赛官网",
+  "collected": "2026-09-01",
+  "navigation": [
+    "首页",
+    "概览",
+    "获奖作品",
+    "奖金",
+    "评委",
+    "赛事日程",
+    "参赛规则"
+  ],
+  "total_prize": "370,000 元",
+  "schedule": [
+    {
+      "label": "秒哒·应用美学黑客松赛事启动",
+      "date": "2026年6月24日",
+      "description": "秒哒·应用美学黑客松官网与报名通道正式开放，公布完整赛事规则与评审标准。"
+    },
+    {
+      "label": "外滩黑客松·AI Coding大赛赛事启动",
+      "date": "2026年7月20日",
+      "description": "外滩黑客松·AI Coding大赛正式启动，双赛联动为创作者提供更广阔的展示舞台。"
+    },
+    {
+      "label": "线上报名 / 提交时间",
+      "date": "2026年6月24日-8月9日",
+      "description": "使用秒哒平台构建应用并提交作品，需同时提交作品介绍与说明文档。"
+    },
+    {
+      "label": "作品评审",
+      "date": "2026年8月10日-8月25日",
+      "description": "由行业专家、资深设计师和技术领袖组成的评审团进行多维度评审。"
+    },
+    {
+      "label": "获奖名单公布",
+      "date": "2026年8月25日",
+      "description": "官方渠道公布最终获奖名单，展示获奖作品与创作者风采。"
+    },
+    {
+      "label": "外滩大会现场颁奖",
+      "date": "2026年9月9日",
+      "description": "外滩黑客松获奖者将参与外滩大会线下颁奖典礼，共同见证优秀作品与创作者的高光时刻。"
+    }
+  ],
+  "judges": [
+    {
+      "name": "丁一",
+      "title": "北京整活视界科技创始人｜广告片、纪录片导演｜AIGC艺术家",
+      "bio": "代表作品包括《第三次未命名项目》《赛博鹏哥》系列、《江山如画》系列MV等。《第三次未命名项目》入围2025釜山国际电影节ACFM单元，长期探索AI与实拍融合创作，合作人民日报、腾讯混元、百度智能云、京东等知名机构与品牌。",
+      "image": "https://miaoda-conversation-file.cdn.bcebos.com/user-a7o5kfzf2kn4/app-cdcugxfs7bwh/20260706/Image.png"
+    },
+    {
+      "name": "南墙Rylee",
+      "title": "AIGC数字艺术家｜中国美院特聘讲师",
+      "bio": "国内首部AI艺术设定集作者；国内首批数智设计创作先锋；亿级曝光top模型创作者；多平台/院校特聘导师、特邀评委，获国内外近百AI艺术与设计、影视相关奖项，合作央视网、河南广电、腾讯、华为、阿里、银泰等品牌。",
+      "image": "https://miaoda-conversation-file.cdn.bcebos.com/user-a7o5kfzf2kn4/app-cdcugxfs7bwh/20260706/Image5.png"
+    },
+    {
+      "name": "苏海江",
+      "title": "中央美术学院城市设计学院副书记、教授、博士生导师",
+      "bio": "毕业于中央美术学院油画系、研究生院，获美学博士学位。动画专业学术带头人、数字三维动画工作室主任，主持多项国家艺术基金及教育教学改革项目，获教育部教学名师、国家级优秀本科课程、北京市优秀教学成果二等奖等荣誉。",
+      "image": "https://miaoda-conversation-file.cdn.bcebos.com/user-a7o5kfzf2kn4/app-cdcugxfs7bwh/20260706/Image1.png"
+    },
+    {
+      "name": "唐箐檐",
+      "title": "中央美术学院团委教师兼职副书记、城市设计学院教工第三党支部书记",
+      "bio": "毕业于中央美术学院油画系，曾获王嘉廉油画奖学金、首届中国当代艺术文献展“最佳新锐奖”，作品受邀参加佛罗伦萨双年展、卢浮宫国际当代艺术博览会等国际艺术展。长期致力于美育创新实践，指导学生团队在国家级创新创业赛事中屡获佳绩。",
+      "image": "https://miaoda-conversation-file.cdn.bcebos.com/user-a7o5kfzf2kn4/app-cdcugxfs7bwh/20260706/Image2.png"
+    },
+    {
+      "name": "李媛媛",
+      "title": "北京兔子梦科技发展有限公司创始人、知名科技自媒体达人",
+      "bio": "曾就职腾讯集团市场部及全资子公司十年，北京城市学院AI智媒与科技运营专业特聘导师。深耕科技领域13年，被行业称为智能产品体验官，累计体验使用测评过500多个科技产品，包括智能产品和AI工具类产品。",
+      "image": "https://miaoda-conversation-file.cdn.bcebos.com/user-a7o5kfzf2kn4/app-cdcugxfs7bwh/20260804/%E6%9D%8E%E5%AA%9B%E5%AA%9B.png"
+    }
+  ],
+  "prizes": [
+    {
+      "name": "冠军",
+      "amount": "30,000 元",
+      "count": 1
+    },
+    {
+      "name": "亚军",
+      "amount": "20,000 元",
+      "count": 1
+    },
+    {
+      "name": "季军",
+      "amount": "15,000 元",
+      "count": 1
+    },
+    {
+      "name": "最美视觉奖",
+      "amount": "12,000 元",
+      "count": 2
+    },
+    {
+      "name": "最具人文奖",
+      "amount": "10,000 元",
+      "count": 2
+    },
+    {
+      "name": "最佳交互体验奖",
+      "amount": "8,000 元",
+      "count": 2
+    },
+    {
+      "name": "外滩美学特别奖",
+      "amount": "5,000 元",
+      "count": 2
+    },
+    {
+      "name": "全网爆款奖",
+      "amount": "1,000 元",
+      "count": 20
+    }
+  ]
+}
