@@ -11,6 +11,9 @@ import datetime
 import requests
 from pathlib import Path
 
+# ============================================================
+# 配置
+# ============================================================
 CONFIG_PATH = Path(__file__).parent / "config.json"
 EXAMPLE_CONFIG_PATH = Path(__file__).parent / "config.example.json"
 REVIEWS_DIR = "reviews"
@@ -25,6 +28,9 @@ DEFAULT_CONFIG = {
     "llm_model": "gpt-4o-mini"
 }
 
+# ============================================================
+# 维度定义
+# ============================================================
 DIMENSIONS = [
     {"key": "idea_innovation", "name": "idea 创新性", "module": "03-pathfinder", "advice": "用「反惯性·多视角·闭环验证」提示词重新生成 idea，至少做 3 个差异化方向对比，不要停在第一个想法。"},
     {"key": "idea_practicality", "name": "idea 实用性", "module": "02-compass", "advice": "动手前先做 5 个用户访谈，验证是真需求还是伪需求。用 competition-award-pathfinder 分析比赛评分维度，倒推项目方向。"},
@@ -48,20 +54,26 @@ FAIL_REASONS = [
     {"key": "other", "name": "其他", "dimension": None}
 ]
 
-
+# ============================================================
+# 工具函数
+# ============================================================
 def load_config():
+    """加载配置，不存在则从 example 复制"""
     if not CONFIG_PATH.exists():
         if EXAMPLE_CONFIG_PATH.exists():
             import shutil
             shutil.copy(EXAMPLE_CONFIG_PATH, CONFIG_PATH)
+            print(f"[配置] 已从 config.example.json 创建 config.json")
         else:
             with open(CONFIG_PATH, "w", encoding="utf-8") as f:
                 json.dump(DEFAULT_CONFIG, f, indent=2, ensure_ascii=False)
+            print(f"[配置] 已创建默认 config.json")
     with open(CONFIG_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def ask(prompt, default=None):
+    """提问，支持默认值"""
     if default:
         result = input(f"{prompt} [默认: {default}]: ").strip()
         return result if result else default
@@ -69,6 +81,7 @@ def ask(prompt, default=None):
 
 
 def ask_choice(prompt, choices, allow_multi=False):
+    """选择题，支持多选"""
     print(f"\n{prompt}")
     for i, c in enumerate(choices, 1):
         print(f"  {i}. {c['name']}")
@@ -87,6 +100,7 @@ def ask_choice(prompt, choices, allow_multi=False):
 
 
 def ask_score(prompt):
+    """1-5 分评分"""
     while True:
         raw = input(f"{prompt} (1-5): ").strip()
         if raw.isdigit() and 1 <= int(raw) <= 5:
@@ -94,12 +108,19 @@ def ask_score(prompt):
         print("请输入 1-5 的数字")
 
 
+# ============================================================
+# 问卷
+# ============================================================
 def run_questionnaire():
+    """运行交互式复盘问卷"""
     print("\n" + "=" * 60)
-    print("  黑客松赏金猎人 - 复盘结晶")
+    print("  🏆 黑客松赏金猎人 - 复盘结晶")
     print("  比赛结束不是终点，是下一次拿奖的起点")
     print("=" * 60 + "\n")
+
     review = {}
+
+    # 1. 基本信息
     print("--- 基本信息 ---")
     review["competition_name"] = ask("比赛名称（如：2026微信小程序开发大赛）")
     review["team_name"] = ask("参赛队名/个人名")
@@ -114,35 +135,56 @@ def run_questionnaire():
         {"key": "eliminated", "name": "初赛/复赛被淘汰"},
         {"key": "not_submitted", "name": "未完成/未提交"}
     ])["key"]
+
+    # 2. 七维度自评
     print("\n--- 七维度自评（1=很差，5=很好）---")
     review["scores"] = {}
     for dim in DIMENSIONS:
         review["scores"][dim["key"]] = ask_score(f"  {dim['name']}")
+
+    # 3. 失败原因
     print("\n--- 失败/不足原因（可多选）---")
     selected = ask_choice("哪些方面导致了成绩不理想？", FAIL_REASONS, allow_multi=True)
     review["fail_reasons"] = [r["key"] for r in selected]
     if any(r["key"] == "other" for r in selected):
         review["fail_reason_other"] = ask("请说明其他原因")
+
+    # 4. 评委反馈
     print("\n--- 评委反馈（如有）---")
     review["judge_feedback"] = ask("评委说了什么/打分情况/现场反应（没有就填无）", "无")
+
+    # 5. 做对了什么
     print("\n--- 可复用经验 ---")
     review["what_worked"] = ask("这次哪些做法有效，下次可以沿用？（尽量具体）")
+
+    # 6. 下次改进 Top3
     print("\n--- 下次改进计划 ---")
     review["improvement_1"] = ask("最想改进的第 1 件事")
     review["improvement_2"] = ask("最想改进的第 2 件事", "无")
     review["improvement_3"] = ask("最想改进的第 3 件事", "无")
+
     return review
 
 
+# ============================================================
+# 分析引擎
+# ============================================================
 def analyze(review):
+    """根据自评和失败原因，分析短板并生成建议"""
     scores = review["scores"]
+
+    # 找出最低分的 2 个维度
     sorted_dims = sorted(DIMENSIONS, key=lambda d: scores[d["key"]])
     weakest = sorted_dims[:2]
+
+    # 关联失败原因到维度
     fail_dimensions = set()
     for reason_key in review["fail_reasons"]:
         for fr in FAIL_REASONS:
             if fr["key"] == reason_key and fr["dimension"]:
                 fail_dimensions.add(fr["dimension"])
+
+    # 生成建议
     suggestions = []
     for dim in weakest:
         suggestions.append({
@@ -151,6 +193,8 @@ def analyze(review):
             "module": dim["module"],
             "advice": dim["advice"]
         })
+
+    # 如果失败原因指向的维度不在最低分里，也加进去
     for dim in DIMENSIONS:
         if dim["key"] in fail_dimensions and dim not in weakest:
             suggestions.append({
@@ -159,6 +203,7 @@ def analyze(review):
                 "module": dim["module"],
                 "advice": dim["advice"]
             })
+
     return {
         "weakest_dimensions": [d["name"] for d in weakest],
         "suggestions": suggestions,
@@ -166,21 +211,31 @@ def analyze(review):
     }
 
 
+# ============================================================
+# 文档生成
+# ============================================================
 def generate_review_doc(review, analysis):
+    """生成 Markdown 复盘文档"""
     scores = review["scores"]
     date_str = review["competition_date"]
     team_slug = review["team_name"].replace(" ", "-").replace("/", "-")
     comp_slug = review["competition_name"].replace(" ", "-").replace("/", "-")
+
+    # 评分文字版雷达图
     score_bars = []
     for dim in DIMENSIONS:
         s = scores[dim["key"]]
         bar = "█" * s + "░" * (5 - s)
         score_bars.append(f"| {dim['name']} | {bar} | {s}/5 |")
+
+    # 失败原因名称
     fail_names = []
     for rk in review["fail_reasons"]:
         for fr in FAIL_REASONS:
             if fr["key"] == rk:
                 fail_names.append(fr["name"])
+
+    # 建议
     suggestion_lines = []
     for i, sug in enumerate(analysis["suggestions"], 1):
         suggestion_lines.append(
@@ -188,9 +243,7 @@ def generate_review_doc(review, analysis):
             f"   - 指向模块：`{sug['module']}`\n"
             f"   - 建议：{sug['advice']}"
         )
-    other_text = ""
-    if review.get("fail_reason_other"):
-        other_text = f"\n**其他说明**：{review['fail_reason_other']}"
+
     doc = f"""# 复盘：{review['competition_name']} - {review['team_name']}
 
 > 复盘日期：{datetime.date.today().isoformat()}
@@ -224,7 +277,9 @@ def generate_review_doc(review, analysis):
 
 ## 三、失败/不足原因
 
-{chr(10).join([f'- {n}' for n in fail_names]) if fail_names else '- 无'}{other_text}
+{chr(10).join([f'- {n}' for n in fail_names]) if fail_names else '- 无'}
+
+{review.get('fail_reason_other', '') and f'**其他说明**：{review["fail_reason_other"]}' or ''}
 
 ---
 
@@ -266,26 +321,36 @@ def generate_review_doc(review, analysis):
     return doc
 
 
+# ============================================================
+# GitHub PR 自动提交
+# ============================================================
 def submit_pr(config, review, doc_content, analysis):
+    """自动创建分支、提交文件、创建 PR"""
     token = config.get("github_token", "")
     owner = config.get("github_owner", "rfdiosuao")
     repo = config.get("github_repo", "hackathon-bounty-hunter")
     base_branch = config.get("github_branch", "main")
+
     if not token:
         print("\n[警告] 未配置 github_token，跳过自动提 PR")
         print("请编辑 07-crystal/config.json 填入 GitHub Personal Access Token")
         print("复盘文档已保存到本地，你可以手动提交")
         return None
+
     headers = {
         "Authorization": f"token {token}",
         "Accept": "application/vnd.github.v3+json"
     }
     api_base = f"https://api.github.com/repos/{owner}/{repo}"
+
     try:
+        # 1. 获取 base branch 的 SHA
         print("[PR] 获取主分支信息...")
         r = requests.get(f"{api_base}/git/ref/heads/{base_branch}", headers=headers, timeout=10)
         r.raise_for_status()
         base_sha = r.json()["object"]["sha"]
+
+        # 2. 创建新分支
         date_str = datetime.date.today().isoformat()
         team_slug = review["team_name"].replace(" ", "-").replace("/", "-")[:30]
         comp_slug = review["competition_name"].replace(" ", "-").replace("/", "-")[:30]
@@ -297,9 +362,14 @@ def submit_pr(config, review, doc_content, analysis):
             "sha": base_sha
         })
         if r.status_code not in (200, 201):
+            # 分支可能已存在，尝试获取
             r2 = requests.get(f"{api_base}/git/ref/heads/{branch_name}", headers=headers, timeout=10)
-            if r2.status_code != 200:
+            if r2.status_code == 200:
+                print(f"[PR] 分支已存在，直接使用")
+            else:
                 r.raise_for_status()
+
+        # 3. 提交复盘文档
         date_str = review["competition_date"]
         file_path = f"{REVIEWS_DIR}/{date_str}-{comp_slug}-{team_slug}.md"
         file_path = file_path.lower().replace(" ", "-").replace("_", "-")
@@ -310,6 +380,8 @@ def submit_pr(config, review, doc_content, analysis):
             "branch": branch_name
         })
         r.raise_for_status()
+
+        # 4. 创建 PR
         pr_title = f"复盘：{review['competition_name']} - {review['team_name']}"
         pr_body = f"""## 复盘摘要
 
@@ -344,6 +416,7 @@ def submit_pr(config, review, doc_content, analysis):
         print(f"   标题: {pr_title}")
         print(f"   链接: {pr_data['html_url']}")
         return pr_data["html_url"]
+
     except requests.exceptions.HTTPError as e:
         print(f"\n❌ GitHub API 错误: {e}")
         if e.response is not None:
@@ -359,9 +432,17 @@ def _b64encode(s):
     return base64.b64encode(s.encode("utf-8")).decode("ascii")
 
 
+# ============================================================
+# 主流程
+# ============================================================
 def main():
+    # 加载配置
     config = load_config()
+
+    # 运行问卷
     review = run_questionnaire()
+
+    # 确认信息
     print("\n" + "=" * 60)
     print("  请确认复盘信息")
     print("=" * 60)
@@ -369,16 +450,21 @@ def main():
     print(f"  队伍: {review['team_name']}")
     print(f"  作品: {review['project_name']}")
     print(f"  成绩: {review['result']}")
-    weakest_names = [DIMENSIONS[i]['name'] for i in sorted(range(len(DIMENSIONS)), key=lambda x: review['scores'][DIMENSIONS[x]['key']])[:2]]
-    print(f"  最薄弱: {', '.join(weakest_names)}")
+    print(f"  最薄弱: {', '.join([DIMENSIONS[i]['name'] for i in sorted(range(len(DIMENSIONS)), key=lambda x: review['scores'][DIMENSIONS[x]['key']])[:2]])}")
     confirm = input("\n确认提交？(y/n): ").strip().lower()
     if confirm != "y":
         print("已取消")
         return
+
+    # 分析
     print("\n[分析] 正在分析短板...")
     analysis = analyze(review)
+
+    # 生成文档
     print("[生成] 正在生成复盘文档...")
     doc = generate_review_doc(review, analysis)
+
+    # 保存本地
     date_str = review["competition_date"]
     team_slug = review["team_name"].replace(" ", "-").replace("/", "-")[:30]
     comp_slug = review["competition_name"].replace(" ", "-").replace("/", "-")[:30]
@@ -389,7 +475,11 @@ def main():
     with open(local_file, "w", encoding="utf-8") as f:
         f.write(doc)
     print(f"[保存] 复盘文档已保存: {local_file}")
+
+    # 提交 PR
     pr_url = submit_pr(config, review, doc, analysis)
+
+    # 总结
     print("\n" + "=" * 60)
     print("  ✅ 复盘完成！")
     print("=" * 60)
