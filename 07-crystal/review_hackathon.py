@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-黑客松赏金猎人 - 复盘结晶模块
+PrizeOps · 复盘结晶模块
 比赛结束后，引导结构化复盘，自动分析短板，生成复盘文档，自动提交 PR 到总仓库。
 """
 import json
@@ -21,7 +21,7 @@ REVIEWS_DIR = "reviews"
 DEFAULT_CONFIG = {
     "github_token": "",
     "github_owner": "rfdiosuao",
-    "github_repo": "hackathon-bounty-hunter",
+    "github_repo": "prize-ops",
     "github_branch": "main",
     "llm_api_key": "",
     "llm_base_url": "https://api.openai.com/v1",
@@ -71,14 +71,12 @@ def load_config():
     with open(CONFIG_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
-
 def ask(prompt, default=None):
     """提问，支持默认值"""
     if default:
         result = input(f"{prompt} [默认: {default}]: ").strip()
         return result if result else default
     return input(f"{prompt}: ").strip()
-
 
 def ask_choice(prompt, choices, allow_multi=False):
     """选择题，支持多选"""
@@ -98,7 +96,6 @@ def ask_choice(prompt, choices, allow_multi=False):
                 return choices[int(raw) - 1]
             print("请输入有效序号")
 
-
 def ask_score(prompt):
     """1-5 分评分"""
     while True:
@@ -107,19 +104,16 @@ def ask_score(prompt):
             return int(raw)
         print("请输入 1-5 的数字")
 
-
 # ============================================================
 # 问卷
 # ============================================================
 def run_questionnaire():
     """运行交互式复盘问卷"""
     print("\n" + "=" * 60)
-    print("  🏆 黑客松赏金猎人 - 复盘结晶")
+    print("  🏆 PrizeOps · 复盘结晶")
     print("  比赛结束不是终点，是下一次拿奖的起点")
     print("=" * 60 + "\n")
-
     review = {}
-
     # 1. 基本信息
     print("--- 基本信息 ---")
     review["competition_name"] = ask("比赛名称（如：2026微信小程序开发大赛）")
@@ -135,36 +129,29 @@ def run_questionnaire():
         {"key": "eliminated", "name": "初赛/复赛被淘汰"},
         {"key": "not_submitted", "name": "未完成/未提交"}
     ])["key"]
-
     # 2. 七维度自评
     print("\n--- 七维度自评（1=很差，5=很好）---")
     review["scores"] = {}
     for dim in DIMENSIONS:
         review["scores"][dim["key"]] = ask_score(f"  {dim['name']}")
-
     # 3. 失败原因
     print("\n--- 失败/不足原因（可多选）---")
     selected = ask_choice("哪些方面导致了成绩不理想？", FAIL_REASONS, allow_multi=True)
     review["fail_reasons"] = [r["key"] for r in selected]
     if any(r["key"] == "other" for r in selected):
         review["fail_reason_other"] = ask("请说明其他原因")
-
     # 4. 评委反馈
     print("\n--- 评委反馈（如有）---")
     review["judge_feedback"] = ask("评委说了什么/打分情况/现场反应（没有就填无）", "无")
-
     # 5. 做对了什么
     print("\n--- 可复用经验 ---")
     review["what_worked"] = ask("这次哪些做法有效，下次可以沿用？（尽量具体）")
-
     # 6. 下次改进 Top3
     print("\n--- 下次改进计划 ---")
     review["improvement_1"] = ask("最想改进的第 1 件事")
     review["improvement_2"] = ask("最想改进的第 2 件事", "无")
     review["improvement_3"] = ask("最想改进的第 3 件事", "无")
-
     return review
-
 
 # ============================================================
 # 分析引擎
@@ -172,18 +159,15 @@ def run_questionnaire():
 def analyze(review):
     """根据自评和失败原因，分析短板并生成建议"""
     scores = review["scores"]
-
     # 找出最低分的 2 个维度
     sorted_dims = sorted(DIMENSIONS, key=lambda d: scores[d["key"]])
     weakest = sorted_dims[:2]
-
     # 关联失败原因到维度
     fail_dimensions = set()
     for reason_key in review["fail_reasons"]:
         for fr in FAIL_REASONS:
             if fr["key"] == reason_key and fr["dimension"]:
                 fail_dimensions.add(fr["dimension"])
-
     # 生成建议
     suggestions = []
     for dim in weakest:
@@ -193,7 +177,6 @@ def analyze(review):
             "module": dim["module"],
             "advice": dim["advice"]
         })
-
     # 如果失败原因指向的维度不在最低分里，也加进去
     for dim in DIMENSIONS:
         if dim["key"] in fail_dimensions and dim not in weakest:
@@ -203,13 +186,11 @@ def analyze(review):
                 "module": dim["module"],
                 "advice": dim["advice"]
             })
-
     return {
         "weakest_dimensions": [d["name"] for d in weakest],
         "suggestions": suggestions,
         "fail_dimensions": [d["name"] for d in DIMENSIONS if d["key"] in fail_dimensions]
     }
-
 
 # ============================================================
 # 文档生成
@@ -220,21 +201,18 @@ def generate_review_doc(review, analysis):
     date_str = review["competition_date"]
     team_slug = review["team_name"].replace(" ", "-").replace("/", "-")
     comp_slug = review["competition_name"].replace(" ", "-").replace("/", "-")
-
     # 评分文字版雷达图
     score_bars = []
     for dim in DIMENSIONS:
         s = scores[dim["key"]]
         bar = "█" * s + "░" * (5 - s)
         score_bars.append(f"| {dim['name']} | {bar} | {s}/5 |")
-
     # 失败原因名称
     fail_names = []
     for rk in review["fail_reasons"]:
         for fr in FAIL_REASONS:
             if fr["key"] == rk:
                 fail_names.append(fr["name"])
-
     # 建议
     suggestion_lines = []
     for i, sug in enumerate(analysis["suggestions"], 1):
@@ -243,18 +221,13 @@ def generate_review_doc(review, analysis):
             f"   - 指向模块：`{sug['module']}`\n"
             f"   - 建议：{sug['advice']}"
         )
-
     doc = f"""# 复盘：{review['competition_name']} - {review['team_name']}
-
 > 复盘日期：{datetime.date.today().isoformat()}
 > 比赛日期：{date_str}
 > 作品名称：{review['project_name']}
 > 最终成绩：{review['result']}
-
 ---
-
 ## 一、比赛基本信息
-
 | 项目 | 内容 |
 |---|---|
 | 比赛名称 | {review['competition_name']} |
@@ -262,64 +235,38 @@ def generate_review_doc(review, analysis):
 | 作品名称 | {review['project_name']} |
 | 比赛日期 | {date_str} |
 | 最终成绩 | {review['result']} |
-
 ---
-
 ## 二、七维度自评
-
 | 维度 | 评分 | 分数 |
 |---|---|---|
 {chr(10).join(score_bars)}
-
 **最薄弱的 2 个维度**：{', '.join(analysis['weakest_dimensions'])}
-
 ---
-
 ## 三、失败/不足原因
-
 {chr(10).join([f'- {n}' for n in fail_names]) if fail_names else '- 无'}
-
 {review.get('fail_reason_other', '') and f'**其他说明**：{review["fail_reason_other"]}' or ''}
-
 ---
-
 ## 四、评委反馈
-
 {review['judge_feedback']}
-
 ---
-
 ## 五、针对性优化建议
-
 {chr(10).join(suggestion_lines)}
-
 ---
-
 ## 六、可复用经验（这次做对了什么）
-
 {review['what_worked']}
-
 ---
-
 ## 七、下次改进计划
-
 1. {review['improvement_1']}
 2. {review['improvement_2']}
 3. {review['improvement_3']}
-
 ---
-
 ## 八、给社区的话
-
 > 这份复盘来自真实参赛经历，希望能帮助后来者少走弯路。
 > 如果你也有复盘想分享，运行 `python3 07-crystal/review_hackathon.py` 即可自动提交 PR。
-
 ---
-
-*由黑客松赏金猎人 · 复盘结晶模块自动生成*
+*由 PrizeOps · 复盘结晶模块自动生成*
 """
     return doc
-
 
 # ============================================================
 # GitHub PR 自动提交
@@ -328,28 +275,24 @@ def submit_pr(config, review, doc_content, analysis):
     """自动创建分支、提交文件、创建 PR"""
     token = config.get("github_token", "")
     owner = config.get("github_owner", "rfdiosuao")
-    repo = config.get("github_repo", "hackathon-bounty-hunter")
+    repo = config.get("github_repo", "prize-ops")
     base_branch = config.get("github_branch", "main")
-
     if not token:
         print("\n[警告] 未配置 github_token，跳过自动提 PR")
         print("请编辑 07-crystal/config.json 填入 GitHub Personal Access Token")
         print("复盘文档已保存到本地，你可以手动提交")
         return None
-
     headers = {
         "Authorization": f"token {token}",
         "Accept": "application/vnd.github.v3+json"
     }
     api_base = f"https://api.github.com/repos/{owner}/{repo}"
-
     try:
         # 1. 获取 base branch 的 SHA
         print("[PR] 获取主分支信息...")
         r = requests.get(f"{api_base}/git/ref/heads/{base_branch}", headers=headers, timeout=10)
         r.raise_for_status()
         base_sha = r.json()["object"]["sha"]
-
         # 2. 创建新分支
         date_str = datetime.date.today().isoformat()
         team_slug = review["team_name"].replace(" ", "-").replace("/", "-")[:30]
@@ -368,7 +311,6 @@ def submit_pr(config, review, doc_content, analysis):
                 print(f"[PR] 分支已存在，直接使用")
             else:
                 r.raise_for_status()
-
         # 3. 提交复盘文档
         date_str = review["competition_date"]
         file_path = f"{REVIEWS_DIR}/{date_str}-{comp_slug}-{team_slug}.md"
@@ -380,27 +322,20 @@ def submit_pr(config, review, doc_content, analysis):
             "branch": branch_name
         })
         r.raise_for_status()
-
         # 4. 创建 PR
         pr_title = f"复盘：{review['competition_name']} - {review['team_name']}"
         pr_body = f"""## 复盘摘要
-
 - **比赛**：{review['competition_name']}
 - **参赛队**：{review['team_name']}
 - **作品**：{review['project_name']}
 - **成绩**：{review['result']}
 - **最薄弱维度**：{', '.join(analysis['weakest_dimensions'])}
-
 ## 优化建议
-
 {chr(10).join([f"- **{s['dimension']}**：{s['advice'][:80]}..." for s in analysis['suggestions']])}
-
 ## 可复用经验
-
 {review['what_worked'][:200]}
-
 ---
-*由黑客松赏金猎人 · 复盘结晶模块自动生成*
+*由 PrizeOps · 复盘结晶模块自动生成*
 """
         print("[PR] 创建 Pull Request...")
         r = requests.post(f"{api_base}/pulls", headers=headers, timeout=10, json={
@@ -416,7 +351,6 @@ def submit_pr(config, review, doc_content, analysis):
         print(f"   标题: {pr_title}")
         print(f"   链接: {pr_data['html_url']}")
         return pr_data["html_url"]
-
     except requests.exceptions.HTTPError as e:
         print(f"\n❌ GitHub API 错误: {e}")
         if e.response is not None:
@@ -426,11 +360,9 @@ def submit_pr(config, review, doc_content, analysis):
         print(f"\n❌ 提交 PR 失败: {e}")
         return None
 
-
 def _b64encode(s):
     import base64
     return base64.b64encode(s.encode("utf-8")).decode("ascii")
-
 
 # ============================================================
 # 主流程
@@ -438,10 +370,8 @@ def _b64encode(s):
 def main():
     # 加载配置
     config = load_config()
-
     # 运行问卷
     review = run_questionnaire()
-
     # 确认信息
     print("\n" + "=" * 60)
     print("  请确认复盘信息")
@@ -455,15 +385,12 @@ def main():
     if confirm != "y":
         print("已取消")
         return
-
     # 分析
     print("\n[分析] 正在分析短板...")
     analysis = analyze(review)
-
     # 生成文档
     print("[生成] 正在生成复盘文档...")
     doc = generate_review_doc(review, analysis)
-
     # 保存本地
     date_str = review["competition_date"]
     team_slug = review["team_name"].replace(" ", "-").replace("/", "-")[:30]
@@ -475,10 +402,8 @@ def main():
     with open(local_file, "w", encoding="utf-8") as f:
         f.write(doc)
     print(f"[保存] 复盘文档已保存: {local_file}")
-
     # 提交 PR
     pr_url = submit_pr(config, review, doc, analysis)
-
     # 总结
     print("\n" + "=" * 60)
     print("  ✅ 复盘完成！")
@@ -490,7 +415,6 @@ def main():
     print(f"  优化建议数: {len(analysis['suggestions'])}")
     print("\n  感谢你的复盘，这会让整个社区变得更强！")
     print("=" * 60)
-
 
 if __name__ == "__main__":
     main()
